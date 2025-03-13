@@ -1,0 +1,12 @@
+stages:
+    - test
+    - deploy
+
+unit-test-job:
+    stage: test
+    script:
+        - ansible-playbook --syntax-check  start.yml
+deploy-job:
+    stage: deploy
+    script:
+      - ansible-playbook start.yml

@@ -1,0 +1,17 @@
+---
+- name: TEST CI/CD ansible
+  hosts: localhost
+  
+  tasks:
+      - name: Command shell  SIZE HDD
+        shell: df -h >> df.log
+        register: res_shell
+      - name: VIEW SIZE
+        debug:
+            msg: "{{ res_shell.stdout_lines | to_nice_json(ensure_ascii=False) }}"
+      - name: Create file
+        file: 
+          state: touch 
+          path: /tmp/test.conf
+
+
